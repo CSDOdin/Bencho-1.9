@@ -1,0 +1,107 @@
+/* Bencho 1:9 | páginas legales: misma identidad de carta y panel. */
+@font-face{font-family:Barlow;src:url('/fonts/barlow-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Barlow;src:url('/fonts/barlow-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Anton;src:url('/fonts/anton-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+.legal-page{--bg-dark:#11110f;--card-bg:#1c1c18;--text-light:#f6f3e9;--text-muted:#b2b0a4;--accent:#ffb703;--accent-hover:#e5a400;--primary:#25d366;--border-color:#393930;--radius:16px;color-scheme:dark;margin:0;background:var(--bg-dark);color:var(--text-light);font:400 16px/1.75 Barlow,system-ui,sans-serif;min-width:0}
+.legal-page *{box-sizing:border-box}
+.legal-page a{color:inherit;text-underline-offset:4px}
+.legal-page .legal-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px 24px;background:#191914;border-bottom:1px solid #403b2d;padding:22px max(22px,calc((100vw - 1050px)/2));min-height:86px}
+.legal-header a{text-decoration:none;font-weight:700}
+.legal-header a:first-child{font:400 26px/1.2 Anton,Impact,sans-serif;letter-spacing:.025em}
+.legal-header span{color:var(--accent)}
+.legal-header a:last-child{font-size:13px;color:#d8ccb0}
+.legal-header a:last-child:hover{color:var(--accent)}
+.legal-main{max-width:950px;margin:auto;padding:clamp(34px,6vw,74px) 24px 88px;min-width:0}
+.legal-eyebrow{margin:0 0 15px;font:700 12px/1.5 Barlow,sans-serif;letter-spacing:.15em;color:var(--accent)}
+.legal-main h1{font:400 clamp(38px,7vw,68px)/1.02 Anton,Impact,sans-serif;letter-spacing:.005em;text-wrap:balance;margin:0 0 16px;overflow-wrap:break-word;max-width:19ch}
+.legal-date{font-size:13px;color:#b7aa8e;margin:0 0 34px!important}
+.legal-main p,.legal-main li{color:#c8c4b6;max-width:76ch;overflow-wrap:break-word}
+.legal-main>p{margin:0 0 17px}
+.legal-main h2{font:400 clamp(23px,3vw,29px)/1.2 Anton,Impact,sans-serif;letter-spacing:.01em;color:var(--text-light);margin:34px 0 12px}
+.legal-main h2:before{content:'';display:inline-block;width:4px;height:20px;margin-right:12px;vertical-align:-3px;background:var(--accent);border-radius:4px}
+.legal-main a{color:var(--accent)}
+.legal-main a:hover{color:#ffca43}
+.legal-card{background:var(--card-bg);border:1px solid #4e442f;border-radius:14px;padding:5px 24px 24px;margin:22px 0;min-width:0}
+.legal-card h2{margin-top:20px}
+.legal-table{max-width:100%;overflow:auto;border:1px solid #4b4534;border-radius:11px;margin:22px 0;scrollbar-width:thin}
+.legal-table table{width:100%;border-collapse:collapse;font-size:14px;min-width:460px}
+.legal-main th,.legal-main td{text-align:left;padding:13px 16px;border-bottom:1px solid #38362c;vertical-align:top}
+.legal-main th{background:#29271e;color:#ffcb53}
+.legal-main td{color:#c8c4b6}
+.legal-main td:first-child{overflow-wrap:anywhere;color:#f2eddc}
+.legal-main tr:last-child td{border-bottom:0}
+.legal-main button{font:700 14px/1.3 Barlow,system-ui,sans-serif;min-height:44px;padding:11px 17px;border:1px solid var(--accent);border-radius:9px;color:#1a170e;background:var(--accent);cursor:pointer}
+.legal-main button:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.legal-main button:disabled{opacity:.6;cursor:wait}
+.legal-page .legal-links{margin:0 auto;max-width:none;background:#191914;border-top:1px solid #403b2d;padding:24px 22px 30px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 25px;font:600 13px/1.6 Barlow,system-ui,sans-serif;color:#c8c4b6}
+.legal-links a,.legal-links button{color:inherit;text-decoration:none;background:none;border:0;padding:4px 0;font:inherit;cursor:pointer}
+.legal-links a:hover,.legal-links button:hover{color:var(--accent,#ffb703)}
+.legal-page :focus-visible,.legal-links :focus-visible{outline:2px solid var(--accent,#ffb703);outline-offset:4px}
+.checkout-privacy{max-width:100%;margin:16px 0 0;padding:0;font:12px/1.55 Barlow,system-ui,sans-serif;color:var(--text-muted,#b2b0a4)}
+.checkout-privacy a{color:var(--accent,#ffb703)}
+.cookie-notice{position:fixed;z-index:20000;left:16px;bottom:16px;width:min(490px,calc(100% - 32px));max-height:min(75dvh,600px);overflow:auto;padding:22px;box-sizing:border-box}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.cookie-status:empty{display:none}
+@media(max-width:600px){.legal-page .legal-header{padding:17px 18px;min-height:72px}.legal-header a:first-child{font-size:22px}.legal-main{padding:34px 18px 60px}.legal-main h1{font-size:clamp(35px,11vw,50px)}.legal-card{padding:4px 16px 18px}.legal-page .legal-links{padding:24px 18px;justify-content:flex-start;gap:12px 18px}.cookie-notice{left:10px;bottom:max(10px,env(safe-area-inset-bottom));width:calc(100% - 20px);padding:18px}.cookie-actions{flex-direction:column}}
+
+/* Aviso de cookies: identidad de Bencho 1:9, aislada de las páginas legales. */
+@font-face{font-family:Barlow;src:url('/fonts/barlow-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Barlow;src:url('/fonts/barlow-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Anton;src:url('/fonts/anton-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+.cookie-notice{
+  color-scheme:dark;
+  background:var(--card-bg,#1c1c18);
+  color:var(--text-light,#f6f3e9);
+  border:1px solid var(--border-color,#393930);
+  border-top:3px solid var(--accent,#ffb703);
+  border-radius:var(--radius,16px);
+  box-shadow:0 12px 40px #0006;
+  font:400 16px/1.55 Barlow,system-ui,sans-serif;
+}
+.cookie-notice h2{
+  color:var(--text-light,#f6f3e9);
+  font:400 28px/1.2 Anton,Impact,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  margin:0 0 12px;
+}
+.cookie-notice p{color:var(--text-muted,#b2b0a4)}
+.cookie-notice a{color:var(--accent,#ffb703);text-underline-offset:3px}
+.cookie-notice .cookie-actions{display:flex;gap:10px;align-items:stretch}
+.cookie-notice .cookie-actions button{
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:1 1 210px;
+  min-height:47px;
+  padding:12px 18px;
+  border:1px solid var(--accent,#ffb703);
+  border-radius:9px;
+  background:var(--accent,#ffb703);
+  color:#17170f;
+  font:700 15px/1.4 Barlow,system-ui,sans-serif;
+  cursor:pointer;touch-action:manipulation;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.cookie-notice .cookie-actions button[data-close]{
+  background:var(--bg-dark,#11110f);
+  border-color:#777567;
+  color:var(--text-light,#f6f3e9);
+}
+@media(hover:hover){
+  .cookie-notice .cookie-actions button:hover{background:var(--accent-hover,#e5a400);border-color:var(--accent-hover,#e5a400);transform:translateY(-1px)}
+  .cookie-notice .cookie-actions button[data-close]:hover{background:#292922;border-color:var(--accent,#ffb703)}
+}
+.cookie-notice .cookie-actions button:active{transform:translateY(0)}
+.cookie-notice button:focus-visible,.cookie-notice a:focus-visible{outline:2px solid var(--accent,#ffb703);outline-offset:4px}
+@media(max-width:600px){.cookie-notice .cookie-actions button{flex:0 0 auto;width:100%;min-height:48px}}
+@media(prefers-reduced-motion:reduce){.cookie-notice .cookie-actions button{transition:none;transform:none}}
+/* En la carta, enlaces legales discretos y alineados con el footer del restaurante. */
+body:not(.legal-page)>.legal-links{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px 24px;padding:20px 24px 30px;background:#191914;border-top:1px solid #403b2d;color:#c8c4b6;font:600 12px/1.6 Barlow,system-ui,sans-serif;min-width:0}
+body:not(.legal-page)>.legal-links a,body:not(.legal-page)>.legal-links button{color:inherit;text-decoration:none;padding:4px 0;background:none;border:0;font:inherit;cursor:pointer}
+body:not(.legal-page)>.legal-links a:hover,body:not(.legal-page)>.legal-links button:hover{color:#ffb703}
+@media(max-width:600px){body:not(.legal-page)>.legal-links{justify-content:flex-start;gap:8px 18px;padding:21px 18px max(24px,env(safe-area-inset-bottom))}}
+
+#legal-editable-content{min-width:0}.legal-copy-paragraph{white-space:pre-line;overflow-wrap:anywhere}
+.legal-actions{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.legal-actions button{min-height:44px}
+@media(max-width:450px){.legal-main{overflow-wrap:anywhere}.legal-header{gap:9px}.legal-card{min-width:0}}
+
