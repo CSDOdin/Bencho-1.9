@@ -94,7 +94,7 @@ function applyRestaurantConfig() {
 
     const loc = byId('restaurant-location');
     if (loc && r.location) {
-        loc.innerHTML = `📍 <strong>Dirección:</strong> ${escapeHtml(r.location)}`;
+        loc.innerHTML = ` <strong>Dirección:</strong> ${escapeHtml(r.location)}`;
     }
 
     const insta = byId('restaurant-instagram');
@@ -330,7 +330,7 @@ function refreshStoreStatusUI() {
 
     if (isOpen) {
         if (badge) {
-            badge.innerText = '🟢 ABIERTO AHORA';
+            badge.innerText = ' ABIERTO AHORA';
             badge.className = 'status-tag open';
         }
         if (closedBanner) closedBanner.style.display = 'none';
@@ -340,13 +340,13 @@ function refreshStoreStatusUI() {
         }
     } else {
         if (badge) {
-            badge.innerText = '🔴 CERRADO AHORA';
+            badge.innerText = ' CERRADO AHORA';
             badge.className = 'status-tag closed';
         }
         if (closedBanner) closedBanner.style.display = 'block';
         if (btnWs) { 
             btnWs.disabled = true; 
-            btnWs.innerHTML = '<span>🔴</span> Local Cerrado'; 
+            btnWs.innerHTML = '<span></span> Local Cerrado'; 
         }
     }
 
@@ -382,7 +382,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const btn = item.querySelector('.btn-promo');
 
         if (today === targetDay) {
-            if (pBadge) { pBadge.innerText = "🔥 ¡DISPONIBLE HOY!"; pBadge.classList.add('active'); }
+            if (pBadge) { pBadge.innerText = " ¡DISPONIBLE HOY!"; pBadge.classList.add('active'); }
         } else {
             if (pBadge) { pBadge.innerText = `Solo los ${dayNames[targetDay]}`; pBadge.classList.add('inactive'); }
             item.classList.add('promo-disabled');
@@ -400,7 +400,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (info) {
                 const notice = document.createElement('span');
                 notice.style.fontSize = '0.75rem'; notice.style.color = 'var(--accent)'; notice.style.fontWeight = 'bold';
-                notice.innerText = '🔥 Solo disponible en Promo Jueves: ' + formatMoney(4000);
+                notice.innerText = ' Solo disponible en Promo Jueves: ' + formatMoney(4000);
                 info.appendChild(notice);
             }
         }
@@ -441,19 +441,19 @@ function renderPaymentMethods() {
 function getCurrentLocationGPS() {
     if (!navigator.geolocation) { alert('Tu navegador no soporta geolocalización por GPS.'); return; }
     const btn = document.getElementById('btn-get-location');
-    btn.innerText = '⌛ Obteniendo ubicación GPS...';
+    btn.innerText = ' Obteniendo ubicación GPS...';
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             document.getElementById('order-address').value = `https://maps.google.com/?q=${lat},${lng}`;
-            btn.innerText = '✅ ¡Ubicación obtenida!';
-            setTimeout(() => { btn.innerText = '📍 Usar mi ubicación GPS actual (Google Maps)'; }, 3000);
+            btn.innerText = ' ¡Ubicación obtenida!';
+            setTimeout(() => { btn.innerText = ' Usar mi ubicación GPS actual (Google Maps)'; }, 3000);
         },
         (error) => {
             alert('No se pudo obtener la ubicación. Asegúrate de otorgar los permisos de GPS en tu dispositivo.');
-            btn.innerText = '📍 Usar mi ubicación GPS actual (Google Maps)';
+            btn.innerText = ' Usar mi ubicación GPS actual (Google Maps)';
         },
         { enableHighAccuracy: true, timeout: 10000 }
     );
@@ -498,7 +498,7 @@ function handleAddToCart(uniqueId, catIndex, itemIndex, isFeatured) {
         }
         currentAddonPending = { name: menuItem.name, price: menuItem.price, productId: menuItem.id };
         document.getElementById('addon-target-burger').innerHTML = availableBurgersAndPromos.map(b => `<option value="${escapeHtml(b.uniqueLabel)}">${escapeHtml(b.uniqueLabel)}</option>`).join('');
-        document.getElementById('addon-modal-title').innerText = `🥓 ${menuItem.name}`;
+        document.getElementById('addon-modal-title').innerText = ` ${menuItem.name}`;
         document.getElementById('addon-target-modal').style.display = 'flex';
         return;
     }
@@ -646,7 +646,7 @@ function renderCart() {
         html += `
             <div class="cart-item" style="border-top: 1px dashed ${isWednesday ? 'var(--primary)' : '#333'}; margin-top: 8px; padding-top: 10px;">
                 <div>
-                    <div class="item-name" style="color: ${isWednesday ? 'var(--primary)' : '#fff'};">🛵 Servicio de Delivery</div>
+                    <div class="item-name" style="color: ${isWednesday ? 'var(--primary)' : '#fff'};"> Servicio de Delivery</div>
                     <div style="font-size: 0.85rem; color: ${isWednesday ? 'var(--primary)' : 'var(--text-muted)'}; font-weight: bold;">${isWednesday ? '¡GRATIS! (Promo Miércoles)' : formatMoney(getDeliveryCost())}</div>
                 </div>
             </div>
@@ -655,7 +655,7 @@ function renderCart() {
         html += `
             <div class="cart-item" style="border-top: 1px dashed #333; margin-top: 8px; padding-top: 10px;">
                 <div>
-                    <div class="item-name" style="color: var(--accent);">🍽️ Servicio: ${escapeHtml(orderType)}</div>
+                    <div class="item-name" style="color: var(--accent);"> Servicio: ${escapeHtml(orderType)}</div>
                     <div style="font-size: 0.85rem; color: var(--primary); font-weight: bold;">Sin costo adicional</div>
                 </div>
             </div>
