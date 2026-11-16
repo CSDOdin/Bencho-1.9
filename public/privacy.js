@@ -3,17 +3,28 @@
   const key='bencho19-privacy-choice', version=1, duration=180*86400000;
   const read=(storage,k)=>{try{return JSON.parse(storage.getItem(k));}catch{return null;}};
   let panel, opener;
-  function close(){panel?.remove();panel=null;opener?.focus();}
+  function close(){panel?.remove();panel=null;opener?.focus({preventScroll:true});}
   function show(focus=false){
-    if(panel){if(focus)panel.querySelector('button').focus();return;}
+    if(panel){if(focus){opener=document.activeElement;panel.querySelector('button').focus({preventScroll:true});}return;}
     opener=focus?document.activeElement:null;
-    panel=document.createElement('section');panel.className=focus?'cookie-notice':'cookie-notice cookie-inline';panel.setAttribute('aria-label','Cookies y privacidad');
-    panel.innerHTML='<div><h2>Tu privacidad, clara.</h2><p>Usamos almacenamiento necesario para tu carrito y las preferencias del sitio. Esta versión no incluye cookies publicitarias ni analíticas opcionales. Puedes seguir navegando sin aceptar el aviso.</p><a href="/cookies.html">Ver cookies y duración</a> · <a href="/privacidad.html">Privacidad</a></div><div class="cookie-actions"><button type="button" data-ack>Aceptar necesarias</button><button type="button" data-close>Continuar sin aceptar</button></div><p class="cookie-status" role="status"></p>';
-    document.body.append(panel);
+    panel=document.createElement('section');panel.className='cookie-notice';panel.setAttribute('aria-label','Cookies y privacidad');
+    panel.innerHTML='<div><h2>Tu privacidad, clara.</h2><p>Guardamos tu carrito y las preferencias necesarias. Sin publicidad ni analítica. <a href="/cookies.html">Ver detalles</a></p></div><div class="cookie-actions"><button type="button" data-ack>Aceptar necesarias</button><button type="button" data-close>Ahora no</button></div><p class="cookie-status" role="status"></p>';
+    panel.setAttribute('data-cart-background','');
+    document.body.append(panel);positionNotice();
     panel.querySelector('[data-ack]').onclick=()=>{try{localStorage.setItem(key,JSON.stringify({version,necessary:true,optional:false,at:Date.now()}));close();}catch{panel.querySelector('.cookie-status').textContent='El navegador no permite guardar la preferencia. Puedes cerrar este aviso y seguir navegando.';}};
     panel.querySelector('[data-close]').onclick=()=>{try{sessionStorage.setItem('bencho19-privacy-dismissed','true');}catch{}close();};
-    if(focus)panel.querySelector('button').focus();
+    if(focus)panel.querySelector('button').focus({preventScroll:true});
   }
+  function positionNotice(){
+    if(!panel)return;
+    const bar=document.getElementById('floating-bar');
+    const rect=bar?.getBoundingClientRect();
+    const visible=bar&&!bar.hidden&&getComputedStyle(bar).display!=='none'&&rect.height>0;
+    panel.style.setProperty('--cookie-bottom',(visible?Math.max(16,innerHeight-rect.top+10):16)+'px');
+  }
+  addEventListener('resize',positionNotice,{passive:true});
+  const floating=document.getElementById('floating-bar');
+  if(floating)new MutationObserver(positionNotice).observe(floating,{attributes:true,childList:true,subtree:true,attributeFilter:['style','hidden','class']});
   document.querySelectorAll('[data-cookie-settings]').forEach(b=>b.addEventListener('click',()=>show(true)));
   const choice=read(localStorage,key);const dismissed=read(sessionStorage,'bencho19-privacy-dismissed');
   if((!choice||choice.version!==version||!Number.isFinite(choice.at)||Date.now()-choice.at>duration)&&!dismissed)show();

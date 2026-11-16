@@ -47,19 +47,11 @@
  }
  const rows=document.getElementById('cart-items-container');new MutationObserver(syncCart).observe(rows,{childList:true});syncCart();
  const categories=document.getElementById('menu-container');
- const seen=new WeakSet();
- const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{
-  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
-  if(!visible.length)return;
-  document.querySelectorAll('.cat-pill').forEach(link=>{const active=link.hash==='#'+visible[0].target.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
- },{rootMargin:'-145px 0px -65% 0px',threshold:0}):null;
  function decorateMenu(){
   categories.querySelectorAll('.featured-badge').forEach(badge=>{badge.textContent='DESTACADO';});
   categories.querySelectorAll('.menu-category').forEach((category,index)=>{
    category.querySelector('.category-name').dataset.number=String(index+1).padStart(2,'0');
-   if(!seen.has(category)){seen.add(category);observer?.observe(category);}
   });
-  if(!document.querySelector('.cat-pill.active'))document.querySelector('.cat-pill')?.classList.add('active');
  }
  new MutationObserver(decorateMenu).observe(categories,{childList:true});decorateMenu();
  const status=document.getElementById('store-status-badge');

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>__SITE_URL__/</loc></url>
-<url><loc>__SITE_URL__/privacidad.html</loc></url>
-<url><loc>__SITE_URL__/cookies.html</loc></url>
-<url><loc>__SITE_URL__/terminos.html</loc></url>
+<url><loc>https://bencho19.netlify.app/</loc></url>
+<url><loc>https://bencho19.netlify.app/privacidad.html</loc></url>
+<url><loc>https://bencho19.netlify.app/cookies.html</loc></url>
+<url><loc>https://bencho19.netlify.app/terminos.html</loc></url>
 </urlset>

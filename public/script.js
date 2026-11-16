@@ -273,14 +273,7 @@ function closeImageModal() {
 document.addEventListener('DOMContentLoaded', () => closeImageModal());
 
 function scrollToCategory(event, catId) {
-    const navBar = document.getElementById('category-nav-bar');
-    const btn = event.target.closest('[data-scroll-category]') || event.currentTarget;
-    
-    const scrollLeft = btn.offsetLeft - (navBar.offsetWidth / 2) + (btn.offsetWidth / 2);
-    navBar.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-
-    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
+    window.BenchoCategories?.navigate(event, catId);
 }
 
 function renderMenuHTML() {

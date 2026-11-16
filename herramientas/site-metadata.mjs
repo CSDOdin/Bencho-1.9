@@ -1,5 +1,5 @@
 import {readFileSync,writeFileSync} from 'node:fs';
-const raw=process.env.SITE_URL||process.env.URL||process.env.DEPLOY_PRIME_URL||'http://localhost:4173';
+const raw=process.env.SITE_URL||process.env.URL||process.env.DEPLOY_PRIME_URL||'https://bencho19.netlify.app';
 const url=new URL(raw);
 if(!['https:','http:'].includes(url.protocol)||url.username||url.password)throw new Error('SITE_URL must be an HTTP(S) origin');
 const base=url.origin;
